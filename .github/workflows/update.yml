@@ -1,0 +1,23 @@
+name: Update DNS
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */12 * * *'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update DNS
+        run: |
+          curl -s https://raw.githubusercontent.com/Internet-Helper/GeoHideDNS/main/script.sh | bash
+        env:
+          AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          DNS: ${{ vars.DNS }}
+          REDIRECT: ${{ vars.REDIRECT }}
