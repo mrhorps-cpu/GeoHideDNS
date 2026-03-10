@@ -18,7 +18,7 @@ jobs:
 
       - name: Run script
         run: |
-          bash <(curl -fsSL https://raw.githubusercontent.com/Internet-Helper/GeoHideDNS/main/script.sh)
+          curl -fsSL https://raw.githubusercontent.com/Internet-Helper/GeoHideDNS/main/run.sh | bash
         env:
           AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
