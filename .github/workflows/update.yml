@@ -13,9 +13,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Update DNS
+      - name: Install curl
+        run: sudo apt-get update && sudo apt-get install -y curl
+
+      - name: Run script
         run: |
-          curl -s https://raw.githubusercontent.com/Internet-Helper/GeoHideDNS/main/script.sh | bash
+          bash <(curl -fsSL https://raw.githubusercontent.com/Internet-Helper/GeoHideDNS/main/script.sh)
         env:
           AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
